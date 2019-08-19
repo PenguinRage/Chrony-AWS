@@ -7,10 +7,9 @@ FROM debian:jessie
 # Exposed ports:
 #  * 123 - Network Time Protocol (NTP) - used for time synchronization
 
-RUN apk add --no-cache chrony
+RUN apt-get update
+RUN apt-get install -y chrony
 
 EXPOSE 123/udp
-
-VOLUME /etc/chrony.conf:/etc/chrony.conf:ro
 
 ENTRYPOINT [ "/usr/sbin/chronyd", "-d", "-s"]
